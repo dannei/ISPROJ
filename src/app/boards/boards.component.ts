@@ -7,7 +7,7 @@ import { FsService } from '../fs.service';
   styleUrls: ['./boards.component.css']
 })
 export class BoardsComponent implements OnInit {
-  displayedColumns = ['Name', 'Email', 'Phone'];
+  displayedColumns = ['listNum','Name', 'Email', 'Phone'];
   dataSource = new BoardDataSource(this.fs);
   
   constructor(private fs: FsService) {

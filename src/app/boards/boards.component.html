@@ -7,6 +7,11 @@
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
+      <!-- List Number Column -->
+    <ng-container matColumnDef="listNum">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let element" class="listNum-col"> {{element.listNum}} </td>
+    </ng-container>
     <!-- Title Column -->
     <ng-container matColumnDef="Name">
       <th mat-header-cell *matHeaderCellDef> Name </th>

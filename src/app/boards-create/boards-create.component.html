@@ -4,21 +4,21 @@
 <form [formGroup]="boardsForm" (ngSubmit)="onFormSubmit(boardsForm.value)">
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Name" formControlName="Name"
-           [errorStateMatcher]="matcher">
+ 
     <mat-error>
       <span *ngIf="!boardsForm.get('Name').valid && boardsForm.get('Name').touched">Please enter Name</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <textarea matInput placeholder="Email" formControlName="Email"
-           [errorStateMatcher]="matcher"></textarea>
+ 
     <mat-error>
       <span *ngIf="!boardsForm.get('Email').valid && boardsForm.get('Email').touched">Please enter Email</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Phone" formControlName="Phone"
-           [errorStateMatcher]="matcher">
+          
     <mat-error>
       <span *ngIf="!boardsForm.get('Phone').valid && boardsForm.get('Phone').touched">Please enter Phone</span>
     </mat-error>

@@ -7,9 +7,9 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 
 export interface Board {
   id?: string
-  author: string
-  description: string
-  title: string
+  Name: string
+  Email: string
+  Phone: string
 }
 
 @Injectable({

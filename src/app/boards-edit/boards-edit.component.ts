@@ -16,7 +16,7 @@ export class BoardsEditComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private fs: FirestoreService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.getBoard(this.route.snapshot.params['id']);
+    this.getBoard(this.route.snapshot.params['listNum']);
     this.boardsForm = this.formBuilder.group({
       'Name' : [null, Validators.required],
       'Email' : [null, Validators.required],
@@ -27,14 +27,14 @@ export class BoardsEditComponent implements OnInit {
     this.fs.getBoard(id).subscribe(data => {
       this.id = data.key;
       this.boardsForm.setValue({
-        title: data.title,
-        description: data.description,
-        author: data.author
+        Name data.Name,
+        Email: data.Email,
+        Phone: data.Phone
       });
     });
   }
   onFormSubmit(form:NgForm) {
-    this.fs.updateBoards(this.id, form)
+    this.fs.updateBoards(this.listNum, form)
       .subscribe(res => {
           this.router.navigate(['/boards']);
         }, (err) => {
@@ -43,6 +43,6 @@ export class BoardsEditComponent implements OnInit {
       );
   }
   boardsDetails() {
-    this.router.navigate(['/boards-details', this.id]);
+    this.router.navigate(['/boards-details', this.listNum]);
   }
 }

@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators'
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore'
 
 export interface Board {
-  id?: string
+  id: string
   Name: string
   Email: string
   Phone: string

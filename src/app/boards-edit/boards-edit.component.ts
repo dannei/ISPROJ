@@ -27,7 +27,7 @@ export class BoardsEditComponent implements OnInit {
     this.fs.getBoard(id).subscribe(data => {
       this.id = data.key;
       this.boardsForm.setValue({
-        Name data.Name,
+        Name: data.Name,
         Email: data.Email,
         Phone: data.Phone
       });

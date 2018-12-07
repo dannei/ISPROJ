@@ -13,7 +13,7 @@ export class BoardsEditComponent implements OnInit {
   Name:string = '';
   Email:string = '';
   Phone:string = '';
-  constructor(private router: Router, private route: ActivatedRoute, private fs: FsService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private route: ActivatedRoute, private fs: FirestoreService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.getBoard(this.route.snapshot.params['id']);

@@ -24,7 +24,7 @@ export class BoardsDetailComponent implements OnInit {
         }
       );
   }
-  constructor(private route: ActivatedRoute, private router: Router, private fs: FsService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private fs: FirestoreService) { }
 
   ngOnInit() {
     this.getBoardDetails(this.route.snapshot.params['id']);

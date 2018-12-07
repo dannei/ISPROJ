@@ -3,52 +3,74 @@ import { Injectable } from '@angular/core'
 import { Observable, from } from 'rxjs'
 import { map } from 'rxjs/operators'
 
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore'
+import * as firebase from 'firebase';
+import firestore from 'firebase/firestore'
 
-export interface Board {
-  id: string
-  Name: string
-  Email: string
-  Phone: string
-}
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirestoreService {
-  private boardCollection: AngularFirestoreCollection<Board>
+  ref = firebase.firestore().collection('boards');
 
-  constructor(private afs: AngularFirestore) {
-    this.boardCollection = afs.collection<Board>('books')
+  constructor() {
   }
 
-  getBoards(): Observable<Board[]> {
-    return this.boardCollection.snapshotChanges().pipe(
-      map(actions =>
-        actions.map(a => {
-          const data = a.payload.doc.data()
-          const id = a.payload.doc.id
-          return { id, ...data }
-        }),
-      ),
-    )
+  getBoards():  Observable<any> {
+    return new Observable((observer) => {
+      this.ref.onSnapshot((querySnapshot) => {
+        let boards = [];
+        querySnapshot.forEach((doc) => {
+          let data = doc.data();
+          boards.push({
+            key: data.listNum,
+            Name: data.Name,
+            Email: data.Email,
+            Phone: data.Phone
+          });
+        });
+        observer.next(boards);
+      });
+    });
   }
 
-  getBoard(id: string): Observable<any> {
-    return this.boardCollection.doc(id).valueChanges()
+  getBoard(listNum: string): Observable<any> {
+    return new Observable((observer) => {
+      this.ref.doc(listNum).get().then((doc) => {
+        let data = doc.data();
+        observer.next({
+           key: data.listNum,
+            Name: data.Name,
+            Email: data.Email,
+            Phone: data.Phone
+        });
+      });
+    });
+  }
+  postBoard(data): Observable<any> {
+    return new Observable((observer) => {
+      this.ref.add(data).then((doc) => {
+        observer.next({
+          key: data.listNum,
+        });
+      });
+    });
   }
 
-  postBoard(board: Board) {
-    return from(this.boardCollection.add(board).then(data => data.id))
+  updateBoards(listNum: string, data): Observable<any> {
+    return new Observable((observer) => {
+      this.ref.doc(listNum).set(data).then(() => {
+        observer.next();
+      });
+    });
+  }
+  deleteBoards(listNum: string): Observable<{}> {
+    return new Observable((observer) => {
+      this.ref.doc(listNum).delete().then(() => {
+        observer.next();
+      });
+    });
   }
 
-  updateBoards(id: string, board: Board) {
-    const doc = this.boardCollection.doc(id)
-    return from(doc.update(board))
-  }
-
-  deleteBoards(id: string) {
-    const doc = this.boardCollection.doc(id)
-    return from(doc.delete())
-  }
+  constructor() { }
 }

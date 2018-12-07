@@ -23,10 +23,10 @@ export class BoardsCreateComponent implements OnInit {
     });
   }
   onFormSubmit(form:NgForm) {
-    this.fs.postBoard(form)
+    this.fs.postBoards(form)
       .subscribe(res => {
           let id = res['key'];
-          this.router.navigate(['/boards-details', this.listNum]);
+          this.router.navigate(['/boards-details', this.id]);
         }, (err) => {
           console.log(err);
         });

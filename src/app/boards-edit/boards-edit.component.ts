@@ -34,7 +34,7 @@ export class BoardsEditComponent implements OnInit {
     });
   }
   onFormSubmit(form:NgForm) {
-    this.fs.updateBoards(this.listNum, form)
+    this.fs.updateBoards(this.id, form)
       .subscribe(res => {
           this.router.navigate(['/boards']);
         }, (err) => {
@@ -43,6 +43,6 @@ export class BoardsEditComponent implements OnInit {
       );
   }
   boardsDetails() {
-    this.router.navigate(['/boards-details', this.listNum]);
+    this.router.navigate(['/boards-details', this.id]);
   }
 }

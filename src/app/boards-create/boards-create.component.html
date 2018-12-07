@@ -14,7 +14,7 @@
     <textarea matInput placeholder="Email" formControlName="email"
            [errorStateMatcher]="matcher"></textarea>
     <mat-error>
-      <span *ngIf="!contactsForm.get('Email').valid && boardsForm.get('email').touched">Please enter contact email</span>
+      <span *ngIf="!boardsForm.get('Email').valid && boardsForm.get('email').touched">Please enter contact email</span>
     </mat-error>
   </mat-form-field>
 
@@ -27,6 +27,6 @@
   </mat-form-field>
 
   <div class="button-row">
-    <button type="submit" [disabled]="!contactsForm.valid" mat-fab color="primary"><mat-icon>save</mat-icon></button>
+    <button type="submit" [disabled]="!boardsForm.valid" mat-fab color="primary"><mat-icon>save</mat-icon></button>
   </div>
 </form>

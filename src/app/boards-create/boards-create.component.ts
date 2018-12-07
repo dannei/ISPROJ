@@ -9,6 +9,7 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
 })
 export class BoardsCreateComponent implements OnInit {
   boardsForm: FormGroup;
+  listNum:number=1;
   Name:string='';
   Email:string='';
   Phone:string='';
@@ -25,7 +26,7 @@ export class BoardsCreateComponent implements OnInit {
     this.fs.postBoard(form)
       .subscribe(res => {
           let id = res['key'];
-          this.router.navigate(['/boards-details', id]);
+          this.router.navigate(['/boards-details', this.listNum]);
         }, (err) => {
           console.log(err);
         });

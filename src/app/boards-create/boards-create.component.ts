@@ -26,7 +26,7 @@ export class BoardsCreateComponent implements OnInit {
     this.fs.postBoard(form)
       .subscribe(res => {
           let id = res['key'];
-          this.router.navigate(['/boards-details', this.id]);
+          this.router.navigate(['/boards-details', id]);
         }, (err) => {
           console.log(err);
         });

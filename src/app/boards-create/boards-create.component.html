@@ -6,7 +6,7 @@
     <input matInput placeholder="Name" formControlName="name"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!boardsForm.get('Name').valid && boardstsForm.get('name').touched">Please enter contact name</span>
+      <span *ngIf="!boardsForm.get('Name').valid && boardsForm.get('name').touched">Please enter contact name</span>
     </mat-error>
   </mat-form-field>
 

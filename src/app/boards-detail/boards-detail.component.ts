@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FsService } from '../fs.service';
+import { FirestoreService } from '../firestore.service';
 @Component({
   selector: 'app-boards-detail',
   templateUrl: './boards-detail.component.html',

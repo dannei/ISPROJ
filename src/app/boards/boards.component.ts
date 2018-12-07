@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { FsService } from '../fs.service';
+import { FirestoreService } from '../firestore.service';
 @Component({
   selector: 'app-boards',
   templateUrl: './boards.component.html',
@@ -10,7 +10,7 @@ export class BoardsComponent implements OnInit {
   displayedColumns = ['listNum','Name', 'Email', 'Phone'];
   dataSource = new BoardDataSource(this.fs);
   
-  constructor(private fs: FsService) {
+  constructor(private fs: FirestoreService) {
   }
   ngOnInit() {
   }
@@ -18,7 +18,7 @@ export class BoardsComponent implements OnInit {
 }
 export class BoardDataSource extends DataSource<any> {
 
-  constructor(private fs: FsService) {
+  constructor(private fs: FirestoreService) {
     super()
   }
 

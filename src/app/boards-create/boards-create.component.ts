@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FsService } from '../fs.service';
+import { FirestoreService } from '../firestore.service';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 @Component({
   selector: 'app-boards-create',
@@ -12,7 +12,7 @@ export class BoardsCreateComponent implements OnInit {
   Name:string='';
   Email:string='';
   Phone:string='';
-  constructor(private router: Router, private fs: FsService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private fs: FirestoreService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.boardsForm = this.formBuilder.group({
@@ -22,7 +22,7 @@ export class BoardsCreateComponent implements OnInit {
     });
   }
   onFormSubmit(form:NgForm) {
-    this.fs.postBoards(form)
+    this.fs.postBoard(form)
       .subscribe(res => {
           let id = res['key'];
           this.router.navigate(['/boards-details', id]);

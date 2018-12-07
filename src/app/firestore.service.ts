@@ -12,10 +12,7 @@ import firestore from 'firebase/firestore'
 })
 export class FirestoreService {
   ref = firebase.firestore().collection('boards');
-
-  constructor() {
-  }
-
+  
   getBoards():  Observable<any> {
     return new Observable((observer) => {
       this.ref.onSnapshot((querySnapshot) => {

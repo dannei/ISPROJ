@@ -22,7 +22,7 @@
     <input matInput placeholder="Phone" formControlName="phone"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!boardsForm.get('Phone').valid && contactsForm.get('Phone').touched">Please enter contact phone number</span>
+      <span *ngIf="!boardsForm.get('Phone').valid && boardsForm.get('Phone').touched">Please enter contact phone number</span>
     </mat-error>
   </mat-form-field>
 
